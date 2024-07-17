@@ -1042,7 +1042,23 @@ abstract class AbstractSlide extends AbstractDecoratorWriter
         $objWriter->startElement('p:txBody');
 
         // p:notes/p:cSld/p:spTree/p:sp[2]/p:txBody/a:bodyPr
-        $objWriter->writeElement('a:bodyPr', null);
+        // $objWriter->writeElement('a:bodyPr', null);
+        
+        // support columns in notes
+        $objWriter->startElement('a:bodyPr');
+        $shapes = $pNote->getShapeCollection();
+        foreach ($shapes as $shape) {
+            // Check type
+            if ($shape instanceof RichText) {
+                if (1 != $shape->getColumns()) {
+                    $objWriter->writeAttribute('numCol', $shape->getColumns());
+                    $objWriter->writeAttribute('spcCol', CommonDrawing::pixelsToEmu($shape->getColumnSpacing()));
+                }
+            }
+        }
+        // p:notes/p:cSld/p:spTree/p:sp[2]/p:txBody/a:bodyPr
+        $objWriter->endElement();
+        
         // p:notes/p:cSld/p:spTree/p:sp[2]/p:txBody/a:lstStyle
         $objWriter->writeElement('a:lstStyle', null);
 
