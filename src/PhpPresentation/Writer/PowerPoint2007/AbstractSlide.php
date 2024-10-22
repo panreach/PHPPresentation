@@ -1018,8 +1018,8 @@ abstract class AbstractSlide extends AbstractDecoratorWriter
 
         // p:notes/p:cSld/p:spTree/p:sp[2]/p:spPr/a:xfrm/a:ext
         $objWriter->startElement('a:ext');
-        $objWriter->writeAttribute('cx', '5486400');
-        $objWriter->writeAttribute('cy', '3600450');
+        $objWriter->writeAttribute('cx', '6486400');
+        $objWriter->writeAttribute('cy', '5600450');
         $objWriter->endElement();
 
         // p:notes/p:cSld/p:spTree/p:sp[2]/p:spPr/a:xfrm
